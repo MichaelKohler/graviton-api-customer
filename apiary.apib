@@ -1,0 +1,182 @@
+FORMAT: 1A
+
+# Graviton API: Customer
+This API serves the purpose of customer retrieval.
+
+All requests need to be sent with a valid ``authToken={authToken}`` Cookie as requested from [the ``/auth`` API](http://docs.gravitonapiauth.apiary.io/).
+
+
+# Group Customer
+Related resources of **Customer API**.
+
+## Customer Collection [/default/customer/{?fetchmode}]
+### List all Customers [GET]
+
+The returned data is a single entry. 
+
+**Fetchmode**: there exists five fetchmodes
+
+| Value        | Name                      | Description                                                                                          |
+|:-------------|:------------------------- |:---------------------------------------------------------------------------------------------------- |
+| ``1``        | FETCH_CONSULTANT          | load all consultant informations                                                                     |
+| ``2``        | FETCH_CONSULTANT_DETAILS  | load all consultant details, if this fetchmode is set, is fetchmode FETCH_CONSULTANT not necessary   |
+| ``4``        | FETCH_DOMICILE_ADDRESS    | load domicile address                                                                                |
+| ``8``        | FETCH_ACCOUNTS            | load all accounts                                                                                    |
+| ``10``       | FETCH_INVESTMENT_ACCOUNTS | load all investment accounts                                                                         |
+
++ Parameters
+
+    + fetchmode (optional, number, `1`) ... ``fetchmode`` is set to load additional informations about the customer
+
+
++ Request
+  
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken={authToken}
+            Accept: application/json
+
+    + Body
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [
+                {
+                    "id": "12345678901234", 
+                    "type ": "Private",
+                    "number": "12345678",
+                    "numberFormatted": null,
+                    "title": "Mr",
+                    "titleCode": 2,
+                    "academicTitle": null,
+                    "academicTitleCode": 0,
+                    "firstName": "Hans",
+                    "lastName":"Muster",
+                    "fulName": "Muster Hans",
+                    "address": null,
+                    "postalCode": null,
+                    "city": null,
+                    "country": null,
+                    "customerSegment": null,
+                    "dateOfBirth": "31.12.1990",
+                    "legalFormCode": null,
+                    "languageCode": "deu",
+                    "blockingCode": null,
+                    "closingDate": null
+                },{
+                    "id": "45678901234567", 
+                    "type ": "Private",
+                    "number": "45678901",
+                    "numberFormatted": null,
+                    "title": "Mr",
+                    "titleCode": 2,
+                    "academicTitle": null,
+                    "academicTitleCode": 0,
+                    "firstName": "Fritz",
+                    "lastName":"Moritz",
+                    "fulName": "Moritz Fritz",
+                    "address": null,
+                    "postalCode": null,
+                    "city": null,
+                    "country": null,
+                    "customerSegment": null,
+                    "dateOfBirth": "31.01.1959",
+                    "legalFormCode": null,
+                    "languageCode": "deu",
+                    "blockingCode": null,
+                    "closingDate": null
+                }
+            ]
+
+## SearchCustomer [/default/customer/{?fetchmode,number}]
+###Retrieve customer object with all its details.
+
++ Parameters
+    + fetchmode (optional, number, `1`) ... ``fetchmode`` is set to load additional informations about the customer
+    + number (required, number, `12345678`) ... ``number`` is the unique number for customer identification
+
+### Retrieve a Customer [GET]
++ Request
+
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken={authToken}
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [
+                {
+                    "id": "12345678901234", 
+                    "type ": "Private",
+                    "number": "12345678",
+                    "numberFormatted": null,
+                    "title": "Mr",
+                    "titleCode": 2,
+                    "academicTitle": null,
+                    "academicTitleCode": 0,
+                    "firstName": "Hans",
+                    "lastName":"Muster",
+                    "fulName": "Muster Hans",
+                    "address": null,
+                    "postalCode": null,
+                    "city": null,
+                    "country": null,
+                    "customerSegment": null,
+                    "dateOfBirth": "31.12.1990",
+                    "legalFormCode": null,
+                    "languageCode": "deu",
+                    "blockingCode": null,
+                    "closingDate": null
+                }
+            ]
+            
+## GetCustomerById [/default/customer/{?fetchmode,id}]
+
+### Retrieve a Customer by Id[GET]
++ Parameters
+    + fetchmode (optional, number, `1`) ... ``fetchmode`` is set to load additional informations about the customer
+    + id (required, number, `12345678901234`) ... Customer ``id``.
+    
++ Request 
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken={authToken}
+            Accept: application/json
+
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "id": "12345678901234", 
+                    "type ": "Private",
+                    "number": "12345678",
+                    "numberFormatted": null,
+                    "title": "Mr",
+                    "titleCode": 2,
+                    "academicTitle": null,
+                    "academicTitleCode": 0,
+                    "firstName": "Hans",
+                    "lastName":"Muster",
+                    "fulName": "Muster Hans",
+                    "address": null,
+                    "postalCode": null,
+                    "city": null,
+                    "country": null,
+                    "customerSegment": null,
+                    "dateOfBirth": "31.12.1990",
+                    "legalFormCode": null,
+                    "languageCode": "deu",
+                    "blockingCode": null,
+                    "closingDate": null
+                }
+            ]
